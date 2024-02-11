@@ -13,10 +13,7 @@ public:
 	void generate(size_t N);//Éú³É¹«Ë½Ô¿
 	LargeInt encrypt(string message);
 	string decrypt(LargeInt c);
-	void import_public_key(const pair<LargeInt,LargeInt>&);
-	void import_public_key(const LargeInt&, const LargeInt&);
-	void import_private_key(const pair<LargeInt, LargeInt>&);
-	void import_private_key(const LargeInt&, const LargeInt&);
+	void import_p_q(LargeInt p_, LargeInt q_);
 	pair<LargeInt, LargeInt> export_public_key();
 	pair<LargeInt, LargeInt> export_private_key();
 

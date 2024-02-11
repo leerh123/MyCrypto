@@ -16,7 +16,6 @@ void RSA::generate(size_t N) {
 	phi = (p - 1) * (q - 1);
 	e = 65537;
 	d = inverse(e, phi);
-
 }
 //LargeInt RSA::encrypt(LargeInt m) {
 //	return LargeInt_pow(m, e, n);
@@ -37,21 +36,13 @@ string RSA::decrypt(LargeInt c) {
 	return  largeint2str(m);
 }
 
-void RSA::import_public_key(const pair<LargeInt, LargeInt>& a) {
-	n = a.first;
-	e = a.second;
-}
-void RSA::import_public_key(const LargeInt& a, const LargeInt& b) {
-	n = a;
-	e = b;
-}
-void RSA::import_private_key(const pair<LargeInt, LargeInt>& a) {
-	n = a.first;
-	e = a.second;
-}
-void RSA::import_private_key(const LargeInt& a, const LargeInt&b) {
-	n = a;
-	e = b;
+void RSA::import_p_q(LargeInt p_, LargeInt q_) {
+	p = p_;
+	q = q_;
+	n = p * q;
+	phi = (p - 1) * (q - 1);
+	e = 65537;
+	d = inverse(e, phi);
 }
 pair<LargeInt, LargeInt> RSA::export_public_key() {
 	return pair<LargeInt, LargeInt>(n, e);

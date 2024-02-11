@@ -1,4 +1,7 @@
 #include "Mod.h"
+#include<iostream>
+using namespace std;
+
 LargeInt LargeInt_pow(LargeInt x, LargeInt n) {
 	LargeInt res = 1;
 	while (n > 0) {
@@ -21,44 +24,30 @@ LargeInt LargeInt_pow(LargeInt x, LargeInt n, LargeInt m) {
 }
 
 
-// 迭代版本的扩展欧几里得算法  
-LargeInt extended_gcd(LargeInt a, LargeInt b, LargeInt& x, LargeInt& y) {
-	if (a == 0) {
-		x = 0;
-		y = 1;
-		return b;
-	}
-	LargeInt x1 = 1, y1 = 0;
-	LargeInt x0 = 0, y0 = 1;
-	LargeInt r = a % b;
-	LargeInt q = a / b;
-
-	while (r != 0) {
-		LargeInt x2 = x0 - q * x1;
-		LargeInt y2 = y0 - q * y1;
-		x0 = x1;
-		y0 = y1;
-		x1 = x2;
-		y1 = y2;
-		a = b;
-		b = r;
-		r = a % b;
-		q = a / b;
-	}
-
-	x = x1;
-	y = y1;
-	return b;
-}
-
-// 求模逆元  
-LargeInt inverse(LargeInt a, LargeInt m) {
-	LargeInt x, y;
-	LargeInt gcd = extended_gcd(a, m, x, y);
-	if (gcd != 1) {
-		return -1; // a 和 m 不互质，没有逆元  
-	}
-	return (x % m + m) % m; // 确保结果在 [0, m-1] 范围内  
+LargeInt inverse(LargeInt a_l, LargeInt n_l) {
+	if ((a_l == 0) || (n_l == 0))
+		return 0;
+	LargeInt g_l = a_l;
+	LargeInt v3_l = n_l;
+	LargeInt v1_l = 0;
+	LargeInt t1_l = 1;
+	LargeInt q_l, t3_l;
+	do {
+		q_l = g_l / v3_l, t3_l = g_l % v3_l;
+		if (t3_l > 0) {
+			q_l = (v1_l * q_l) % n_l;
+			q_l = (n_l + t1_l - q_l) % n_l;
+			t1_l = v1_l;
+			v1_l = q_l;
+			g_l = v3_l;
+			v3_l = t3_l;
+		}
+	} while (t3_l > 0);
+	g_l = v3_l;
+	if (g_l == 1)
+		return v1_l;
+	else
+		return 0;
 }
 
 LargeInt gcd(const LargeInt& _a, const LargeInt& _b) {
