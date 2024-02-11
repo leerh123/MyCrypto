@@ -11,7 +11,7 @@
 | 对称密码     | AES                                       |
 | 加密模式     | ECB，CBC，CFB，OFB，CTR                   |
 | 公钥密码     | RSA                                       |
-| 哈希函数     | SHA1，SHA256，SHA512，SHA3_256，SM3 |
+| 哈希函数     | MD5，SHA1，SHA256，SHA512，SHA3_256，SM3 |
 | MAC          | HMAC,CMAC                                 |
 
 ## 文档
