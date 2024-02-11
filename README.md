@@ -15,4 +15,4 @@
 | MAC          | HMAC,CMAC                                 |
 
 ## 文档
-见wiki。
+见[wiki](https://github.com/leerh123/MyCrypto/wiki)。
